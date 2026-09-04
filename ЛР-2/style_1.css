@@ -1,0 +1,175 @@
+/* ============================================================
+   ОБЩИЕ СТИЛИ ДЛЯ ВСЕЙ СТРАНИЦЫ
+   ============================================================ */
+body {
+  background-color: #f4f4f4;        /* Светлый фон страницы */
+  display: flex;
+  flex-direction: column;           /* Элементы идут сверху вниз */
+  align-items: center;              /* Выравнивание по центру по горизонтали */
+  justify-content: center;          /* Выравнивание по центру по вертикали */
+  min-height: 100vh;               /* Минимальная высота = высота экрана */
+  margin: 0;
+  padding: 20px;
+  font-family: 'Verdana', sans-serif; /* Шрифт как на сайте РЖД */
+}
+
+/* ============================================================
+   КОНТЕЙНЕР КАЛЬКУЛЯТОРА
+   ============================================================ */
+.background {
+  background-color: #2b2b2b;        /* Тёмный фон */
+  padding: 20px;
+  border-radius: 30px;
+  width: 280px;                    /* Фиксированная ширина, чтобы всё помещалось */
+  box-shadow: 0 0 30px rgba(0,0,0,0.5);
+  border: 3px solid #E3120B;       /* Красная рамка – стиль РЖД */
+}
+
+/* ============================================================
+   ДИСПЛЕЙ (поле вывода результата)
+   ============================================================ */
+.result {
+  width: 100%;                     /* Растягиваем на всю ширину контейнера */
+  height: 60px;
+  margin-bottom: 15px;
+  padding-right: 15px;
+  background: #ffffff;             /* Белый фон */
+  text-align: right;               /* Текст прижат к правому краю */
+  color: #1a1a1a;
+  font-size: 2rem;
+  font-weight: bold;
+  font-family: 'Verdana', sans-serif;
+  border-radius: 10px;
+  border: 2px solid #E3120B;       /* Красная рамка */
+  box-shadow: inset 0 2px 5px rgba(0,0,0,0.1);
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  overflow: hidden;
+  box-sizing: border-box;          /* Чтобы padding не увеличивал ширину */
+}
+
+/* ============================================================
+   КАЖДЫЙ РЯД КНОПОК – используем flex для ровного распределения
+   ============================================================ */
+.background > div {
+  display: flex;
+  gap: 5px;                        /* Расстояние между кнопками в ряду */
+  margin-bottom: 5px;              /* Отступ между рядами */
+}
+
+/* ============================================================
+   БАЗОВЫЙ СТИЛЬ ДЛЯ ВСЕХ КНОПОК
+   ============================================================ */
+.my-btn {
+  flex: 1;                         /* Все кнопки занимают равную долю ширины */
+  height: 50px;
+  border-radius: 12px;             /* Слегка скруглённые углы (не круглые) */
+  border: none;
+  background: #d0d0d0;             /* Серый цвет для цифровых кнопок */
+  color: #1a1a1a;
+  font-size: 1.3rem;
+  font-weight: bold;
+  font-family: 'Verdana', sans-serif;
+  cursor: pointer;
+  user-select: none;
+  transition: background 0.2s, transform 0.1s;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+  min-width: 0;                    /* Позволяет сжиматься при нехватке места */
+}
+
+/* Изменение цвета при наведении курсора */
+.my-btn:hover {
+  background: #b0b0b0;
+}
+
+/* Эффект нажатия (уменьшение и подсветка) */
+.my-btn:active {
+  transform: scale(0.95);
+  filter: brightness(120%);
+}
+
+/* ============================================================
+   КНОПКИ ОСНОВНЫХ ОПЕРАЦИЙ (красные, как бренд РЖД)
+   ============================================================ */
+.my-btn.primary {
+  background: #E3120B;
+  color: white;
+}
+.my-btn.primary:hover {
+  background: #c0100a;             /* Темнее при наведении */
+}
+
+/* ============================================================
+   КНОПКИ ВТОРОСТЕПЕННЫХ ОПЕРАЦИЙ (серые)
+   ============================================================ */
+.my-btn.secondary {
+  background: #a0a0a0;
+  color: #1a1a1a;
+}
+.my-btn.secondary:hover {
+  background: #888888;
+}
+
+/* ============================================================
+   КНОПКА "=" – занимает две колонки (шире остальных)
+   ============================================================ */
+.my-btn.execute {
+  flex: 2;                         /* В два раза шире обычных кнопок */
+  background: #E3120B;
+  color: white;
+}
+.my-btn.execute:hover {
+  background: #c0100a;
+}
+
+/* ============================================================
+   ДОПОЛНИТЕЛЬНЫЕ ЭЛЕМЕНТЫ (подпись, автор, цель)
+   ============================================================ */
+
+/* Текст "ЛР выполнена ФИО" */
+.footer-text {
+  text-align: center;
+  color: #333333;
+  margin-top: 20px;
+  font-size: 14px;
+  font-family: 'Verdana', sans-serif;
+}
+
+/* Сворачивающийся блок с автором */
+.author-details {
+  margin-top: 15px;
+  background: #f0f0f0;
+  border-radius: 8px;
+  padding: 8px 15px;
+  border-left: 4px solid #E3120B;
+  font-family: 'Verdana', sans-serif;
+}
+.author-details summary {
+  cursor: pointer;
+  font-weight: bold;
+  color: #1a1a1a;
+}
+.author-details p {
+  margin: 5px 0;
+  color: #333;
+}
+
+/* Блок с целью работы */
+.goal-text {
+  margin-top: 15px;
+  padding: 10px;
+  background: #f9f9f9;
+  border-radius: 8px;
+  border: 1px solid #ddd;
+  font-family: 'Verdana', sans-serif;
+  font-size: 14px;
+}
+/* Подсветка ключевых слов (тег <mark>) */
+.goal-text mark {
+  background-color: #ffdddd;
+  color: #E3120B;
+  font-weight: bold;
+  padding: 0 4px;
+  border-radius: 4px;
+}
