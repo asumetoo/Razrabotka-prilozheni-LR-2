@@ -13,12 +13,37 @@ let operation = null;           // Выбранная операция (plus, mi
 const resultDiv = document.getElementById('result');
 
 // ================================================================
-// 2. ВСПОМОГАТЕЛЬНАЯ ФУНКЦИЯ
-//    Обновляет текст на экране, показывая текущее число (или 0, если строка пуста).
+// 2. ВЫВОД ЧИСЛА ПО ШИРИНЕ ДИСПЛЕЯ
+//    У ввода и результатов один лимит символов. Сокращается только
+//    отображение: currentNumber сохраняется целиком для вычислений.
 // ================================================================
-function updateDisplay() {
-    resultDiv.textContent = currentNumber || '0';
+const displayMeasure = document.createElement('canvas').getContext('2d');
+
+function getDisplayLimit() {
+    const style = getComputedStyle(resultDiv);
+    const availableWidth = Math.max(0, resultDiv.clientWidth
+        - parseFloat(style.paddingLeft) - parseFloat(style.paddingRight));
+    displayMeasure.font = `${style.fontWeight} ${style.fontSize} ${style.fontFamily}`;
+    const characterWidth = Math.max(...Array.from('0123456789.-+e…',
+        character => displayMeasure.measureText(character).width));
+    // Запас в один пиксель защищает от обрезания крайнего символа.
+    return Math.max(1, Math.floor((availableWidth - 1) / characterWidth));
 }
+
+function updateDisplay() {
+    const fullText = currentNumber || '0';
+    const limit = getDisplayLimit();
+    resultDiv.textContent = fullText.length > limit
+        ? fullText.slice(0, limit - 1) + '…'
+        : fullText;
+    // Полное число можно посмотреть, наведя курсор на дисплей.
+    resultDiv.title = fullText;
+}
+
+// Пересчитываем лимит при изменении окна, масштаба или загрузке шрифта.
+const displayResizeObserver = new ResizeObserver(updateDisplay);
+displayResizeObserver.observe(resultDiv);
+document.fonts.ready.then(updateDisplay);
 
 // ================================================================
 // 3. ОБРАБОТЧИКИ ДЛЯ ЦИФР И ТОЧКИ
