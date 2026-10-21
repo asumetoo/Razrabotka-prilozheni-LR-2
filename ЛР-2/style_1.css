@@ -1,4 +1,4 @@
-/* Р›Р -2. Р”РІРµ СЃС‚СЂР°РЅРёС†С‹ РІ СЃС‚РёР»РёСЃС‚РёРєРµ Р Р–Р”. */
+/* ЛР-2. Две страницы в стилистике РЖД. */
 :root {
     --red: #e3120b;
     --red-dark: #be0c07;
@@ -12,7 +12,7 @@ body { margin: 0; font-family: Verdana, Geneva, sans-serif; }
 button, a { -webkit-tap-highlight-color: transparent; }
 button:focus-visible, a:focus-visible { outline: 3px solid #ffb1a7; outline-offset: 3px; }
 
-/* ================ Р“Р›РђР’РќРђРЇ РЎРўР РђРќРР¦Рђ ================ */
+/* ================ ГЛАВНАЯ СТРАНИЦА ================ */
 .landing-page { background: #f5f6f7; color: var(--ink); min-height: 100vh; }
 .site-header {
     display: flex; align-items: center; justify-content: space-between;
@@ -57,7 +57,7 @@ button:focus-visible, a:focus-visible { outline: 3px solid #ffb1a7; outline-offs
 .benefit p { font-size: 12px; color: #747a80; margin: 0; line-height: 1.65; }
 .site-footer { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 12px; padding: 19px clamp(24px,6vw,100px); color: #9fa4ab; background: #24272c; font-size: 11px; line-height: 1.6; }
 
-/* ================ РљРђР›Р¬РљРЈР›РЇРўРћР  ================ */
+/* ================ КАЛЬКУЛЯТОР ================ */
 .calculator-page { min-height: 100vh; min-height: 100dvh; display: flex; flex-direction: column; color: var(--ink); background: #25282d; }
 .calc-header { flex: 0 0 68px; display: grid; grid-template-columns: 1fr auto 1fr; gap: 12px; align-items: center; background: white; border-bottom: 3px solid var(--red); padding: 0 clamp(12px, 2.8vw, 44px); }
 .calc-back { color: var(--red); font-weight: 700; text-decoration: none; font-size: 14px; width: fit-content; }
