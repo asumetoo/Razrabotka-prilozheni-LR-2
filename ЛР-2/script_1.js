@@ -45,6 +45,18 @@ const displayResizeObserver = new ResizeObserver(updateDisplay);
 displayResizeObserver.observe(resultDiv);
 document.fonts.ready.then(updateDisplay);
 
+// Новый символ принимается, только если всё число помещается в дисплей.
+// Проверка общая для цифр, точки и кнопки «000».
+function appendInput(text) {
+    if (text === '.' && currentNumber.includes('.')) return;
+    const base = currentNumber === '0' && text !== '.' ? '' : currentNumber;
+    let nextNumber = base + text;
+    if (nextNumber.startsWith('.')) nextNumber = '0' + nextNumber;
+    if (nextNumber.length > getDisplayLimit()) return;
+    currentNumber = nextNumber;
+    updateDisplay();
+}
+
 // ================================================================
 // 3. ОБРАБОТЧИКИ ДЛЯ ЦИФР И ТОЧКИ
 //    Находим все кнопки, у которых id начинается с "btn_digit_",
@@ -52,14 +64,7 @@ document.fonts.ready.then(updateDisplay);
 // ================================================================
 document.querySelectorAll('[id^="btn_digit_"]').forEach(btn => {
     btn.onclick = function() {
-        const digit = this.textContent;   // Текст на кнопке ('0'..'9' или '.')
-        // Если текущее число равно '0' и нажата не точка, заменяем '0' на пустую строку
-        if (currentNumber === '0' && digit !== '.') {
-            currentNumber = '';
-        }
-        // Добавляем цифру (или точку) в конец строки
-        currentNumber += digit;
-        updateDisplay();   // Обновляем экран
+        appendInput(this.textContent);
     };
 });
 
@@ -159,14 +164,7 @@ document.getElementById('btn_op_factorial').onclick = function() {
 // 11. ТРОЙНОЙ НОЛЬ (000) – добавляет три нуля к текущему числу
 // ================================================================
 document.getElementById('btn_op_triple_zero').onclick = function() {
-    if (currentNumber === '0') {
-        // Если было просто '0', заменяем на '000'
-        currentNumber = '000';
-    } else {
-        // Иначе добавляем '000' в конец
-        currentNumber += '000';
-    }
-    updateDisplay();
+    appendInput('000');
 };
 
 // ================================================================
