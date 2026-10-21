@@ -38,6 +38,7 @@ function updateDisplay() {
         : fullText;
     // Полное число можно посмотреть, наведя курсор на дисплей.
     resultDiv.title = fullText;
+    updateInputAvailability();
 }
 
 // Пересчитываем лимит при изменении окна, масштаба или загрузке шрифта.
@@ -47,12 +48,27 @@ document.fonts.ready.then(updateDisplay);
 
 // Новый символ принимается, только если всё число помещается в дисплей.
 // Проверка общая для цифр, точки и кнопки «000».
-function appendInput(text) {
-    if (text === '.' && currentNumber.includes('.')) return;
+function getNextInput(text) {
+    if (text === '.' && currentNumber.includes('.')) return null;
     const base = currentNumber === '0' && text !== '.' ? '' : currentNumber;
     let nextNumber = base + text;
     if (nextNumber.startsWith('.')) nextNumber = '0' + nextNumber;
-    if (nextNumber.length > getDisplayLimit()) return;
+    return nextNumber;
+}
+
+function updateInputAvailability() {
+    const limit = getDisplayLimit();
+    const buttons = [...document.querySelectorAll('[id^="btn_digit_"]'),
+        document.getElementById('btn_op_triple_zero')];
+    buttons.forEach(button => {
+        const nextNumber = getNextInput(button.textContent.trim());
+        button.disabled = nextNumber === null || nextNumber.length > limit;
+    });
+}
+
+function appendInput(text) {
+    const nextNumber = getNextInput(text);
+    if (nextNumber === null || nextNumber.length > getDisplayLimit()) return;
     currentNumber = nextNumber;
     updateDisplay();
 }

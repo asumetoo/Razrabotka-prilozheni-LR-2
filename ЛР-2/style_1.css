@@ -73,6 +73,7 @@ button:focus-visible, a:focus-visible { outline: 3px solid #ffb1a7; outline-offs
 .my-btn { min-width: 0; width: 100%; height: 100%; border: none; border-radius: 12px; padding: 5px; background: #d0d0d0; color: #20242a; font: 700 clamp(16px, 2.5vw, 33px)/1.2 Verdana, sans-serif; cursor: pointer; transition: background .15s ease, transform .1s; box-shadow: 0 2px 4px rgba(0,0,0,.16); }
 .my-btn:hover { background: #b7bbc1; }
 .my-btn:active { transform: scale(.985); filter: brightness(1.12); }
+.my-btn:disabled { opacity: .45; cursor: not-allowed; transform: none; filter: none; }
 .my-btn.primary { background: var(--red); color: white; }
 .my-btn.primary:hover { background: var(--red-dark); }
 .my-btn.secondary { background: #9299a2; color: #151b23; }
