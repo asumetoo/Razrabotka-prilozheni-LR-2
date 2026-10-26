@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#25282d">
+    <title>Калькулятор — Лабораторная работа № 2</title>
+    <link rel="stylesheet" href="style_1.css?v=input-limit-3">
+</head>
+<body class="calculator-page">
+    <header class="calc-header">
+        <a class="calc-back" href="index.html">← На главную</a>
+        <span class="calc-heading">КАЛЬКУЛЯТОР <span class="calc-heading-slash">/</span> ЛР № 2</span>
+        <span class="calc-rzd">РЖД</span>
+    </header>
+    <main class="calculator-main">
+        <section class="background" aria-label="Калькулятор">
+            <div id="result" class="result" role="status" aria-live="polite">0</div>
+            <div class="calc-row">
+                <button id="btn_op_clear" class="my-btn secondary">C</button>
+                <button id="btn_backspace" class="my-btn secondary">⌫</button>
+                <button id="btn_op_sqrt" class="my-btn primary">√</button>
+                <button id="btn_op_div" class="my-btn primary">÷</button>
+            </div>
+            <div class="calc-row">
+                <button id="btn_digit_7" class="my-btn">7</button>
+                <button id="btn_digit_8" class="my-btn">8</button>
+                <button id="btn_digit_9" class="my-btn">9</button>
+                <button id="btn_op_mult" class="my-btn primary">×</button>
+            </div>
+            <div class="calc-row">
+                <button id="btn_digit_4" class="my-btn">4</button>
+                <button id="btn_digit_5" class="my-btn">5</button>
+                <button id="btn_digit_6" class="my-btn">6</button>
+                <button id="btn_op_minus" class="my-btn primary">−</button>
+            </div>
+            <div class="calc-row">
+                <button id="btn_digit_1" class="my-btn">1</button>
+                <button id="btn_digit_2" class="my-btn">2</button>
+                <button id="btn_digit_3" class="my-btn">3</button>
+                <button id="btn_op_plus" class="my-btn primary">+</button>
+            </div>
+            <div class="calc-row">
+                <button id="btn_op_sign" class="my-btn secondary">+/−</button>
+                <button id="btn_digit_0" class="my-btn">0</button>
+                <button id="btn_digit_dot" class="my-btn">.</button>
+                <button id="btn_op_equal" class="my-btn primary execute">=</button>
+            </div>
+            <div class="calc-row">
+                <button id="btn_op_percent" class="my-btn secondary">%</button>
+                <button id="btn_op_square" class="my-btn primary">x²</button>
+                <button id="btn_op_factorial" class="my-btn primary">x!</button>
+                <button id="btn_custom" class="my-btn primary">1/x</button>
+            </div>
+            <div class="calc-row calc-row-extra">
+                <button id="btn_op_triple_zero" class="my-btn">000</button>
+                <button id="btn_memory_add" class="my-btn secondary">M+</button>
+                <button id="btn_memory_sub" class="my-btn secondary">M−</button>
+                <button id="btn_change_bg" class="my-btn secondary">🎨 Фон</button>
+                <button id="btn_change_display" class="my-btn secondary">🎨 Рез</button>
+            </div>
+        </section>
+    </main>
+    <footer class="calc-footer">
+        <span>ЛР выполнила Щетинина А.Я.</span>
+        <span>Учебный проект в стиле РЖД</span>
+    </footer>
+    <script src="script_1.js?v=input-limit-3"></script>
+</body>
+</html>
